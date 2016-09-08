@@ -1,7 +1,15 @@
 module.exports = {
-  entry: ['babel-polyfill', './js/inject.js'],
+  entry: {
+    'inject': './js/inject.jsx',
+    'background': './js/background.jsx',
+  },
   output: {
     path: __dirname + "/extension/bundled",
-    filename: "inject.bundled.js"
+    filename: "[name].js"
+  },
+  module: {
+    loaders: [
+      { test: /\.jsx?$/, exclude: /node_modules/, loader: "babel-loader" }
+    ]
   }
 }

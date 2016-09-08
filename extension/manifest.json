@@ -6,9 +6,12 @@
     {
       "matches": [ "http://*/*", "https://*/*" ],
       "include_globs": [ "*skybet*" ],
-      "js": ["bundled/inject.bundled.js"]
+      "js": ["bundled/inject.js"]
     }
   ],
+  "background": {
+    "scripts": [ "bundled/background.js" ]
+  },
   "browser_action": {
     "default_icon": "img/icon-19.png"
   },
