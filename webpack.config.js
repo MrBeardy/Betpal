@@ -1,4 +1,5 @@
 module.exports = {
+  devtool: 'source-map',
   entry: {
     'inject': './js/inject.jsx',
     'background': './js/background.jsx',

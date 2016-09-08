@@ -20,7 +20,7 @@
     "128": "img/icon-128.png"
   },
   "permissions": [
-    "declarativeContent"
+    "storage"
   ],
   "manifest_version": 2
 }
