@@ -1,3 +1,4 @@
 let _ = require('lodash')
+let $ = require('jquery')
 
-console.log(`hello world, here's a number ${ _.random(0, 1000) }.`);
+$("body").prepend($("<h1>Hello World</h1>"));

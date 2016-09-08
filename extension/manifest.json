@@ -3,7 +3,11 @@
   "description": "",
   "version": "0.1.0",
   "content_scripts": [
-    { "matches": [ "http://*/*" ], "js": ["bundled/inject.bundled.js"] }
+    {
+      "matches": [ "http://*/*", "https://*/*" ],
+      "include_globs": [ "*skybet*" ],
+      "js": ["bundled/inject.bundled.js"]
+    }
   ],
   "browser_action": {
     "default_icon": "img/icon-19.png"
