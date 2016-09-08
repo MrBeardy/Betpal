@@ -1,0 +1,17 @@
+{
+  "name": "betpal",
+  "version": "0.1.0",
+  "author": "",
+  "scripts": {
+    "start": "webpack --progress --colors --watch"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.15.0"
+  },
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-polyfill": "^6.13.0",
+    "webpack": "^1.13.2"
+  }
+}
