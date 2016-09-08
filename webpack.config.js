@@ -1,8 +1,8 @@
 module.exports = {
   devtool: 'source-map',
   entry: {
-    'inject': './js/inject.jsx',
-    'background': './js/background.jsx',
+    'inject': './src/inject.jsx',
+    'background': './src/background.jsx',
   },
   output: {
     path: __dirname + "/extension/bundled",

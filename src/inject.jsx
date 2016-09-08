@@ -1,0 +1,2 @@
+
+import './containers/EventFollowing.jsx'
