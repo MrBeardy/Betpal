@@ -69,5 +69,5 @@ class EventFollowing extends React.Component {
 };
 
 if (Utils.isEventPage) {
-  Utils.injectComponent(EventFollowing, "#page #content")
+  Utils.injectComponent(EventFollowing, "#page #content", { mountMethod: "append" })
 }

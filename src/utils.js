@@ -24,12 +24,18 @@ export default class Utils {
     }
   }
 
-  static injectComponent(component, selector, element = "div") {
-    let mountNode = document.createElement(element);
+  static injectComponent(component, selector, opts = {}) {
+    opts = {
+      element: "div",
+      mountMethod: "prepend",
+      ...opts
+    };
+
+    let mountNode = document.createElement(opts.element);
     render(React.createElement(component),  mountNode);
 
     if (selector) {
-      $(selector).prepend(mountNode);
+      $(selector)[opts.mountMethod](mountNode);
     }
 
     return mountNode;
