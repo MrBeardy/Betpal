@@ -10,7 +10,7 @@
     }
   ],
   "background": {
-    "scripts": [ "bundled/background.js" ]
+    "page": "background.html"
   },
   "browser_action": {
     "default_icon": "img/icon-19.png"
