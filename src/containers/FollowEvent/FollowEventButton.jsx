@@ -1,19 +1,20 @@
 import React from 'react';
-import ToggleButton from '../components/ToggleButton.jsx'
-import Page from '../classes/Page.jsx'
+import ToggleButton from '../../components/ToggleButton.jsx'
+import Page from '../../classes/Page.jsx'
+import Utils from '../../classes/Utils'
+
+let globals = require('../../config/globals')
 
 export default class FollowEventButton extends React.Component {
   constructor(props) {
     super(props)
 
-    this.buttonClicked = this.buttonClicked.bind(this);
-
-    this.currentPage = new Page();
-    this.busy = false;
-
     this.state = {
       following: false
     }
+
+    this.currentPage = new Page();
+    this.buttonClicked = this.buttonClicked.bind(this);
 
     this.updateStateFromStore();
   }
@@ -21,10 +22,10 @@ export default class FollowEventButton extends React.Component {
   // Storage
 
   get storageKey() {
-    return `followEvent-${ this.currentPage.eventID }`
+    return globals.storagePrefixes.followEvent + this.currentPage.eventID
   }
 
-  updateStateFromStore() {
+  updateStateFromStore() {  
     chrome.storage.sync.get(this.storageKey, (store) => {
       if (store.hasOwnProperty(this.storageKey)) {
         this.setState({
@@ -34,12 +35,17 @@ export default class FollowEventButton extends React.Component {
     });
   }
 
+  get storageValues() {
+    return {
+      title: this.currentPage.title,
+      url: this.currentPage.canonicalURL
+    }
+  }
+
   follow() {
     let self = this;
-    let o = {};
-    o[this.storageKey] = true;
 
-    chrome.storage.sync.set(o, function() {
+    chrome.storage.sync.set({ [this.storageKey]: this.storageValues }, function() {
       self.setState({
         following: true
       })

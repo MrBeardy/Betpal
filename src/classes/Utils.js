@@ -1,9 +1,24 @@
 import React from 'react';
 import { render } from 'react-dom';
 
+let _ = require('lodash');
 export default class Utils {
+  // Storage
+  static storageKeysByPrefix(prefix, callback) {
+    chrome.storage.sync.get(null, function(items) {
+      callback(_.pickBy(items, (v,k) => {
+        return _.startsWith(k, prefix);
+      }))
+    })
+  }
+
+  // Page
+  static canonicalURL(html) {
+    return this.documentOrElement(html).querySelector("link[rel='canonical']").getAttribute("href")
+  }
+
   static isEvent(html) {
-    return this.elementExists('.event-title.sub-head', html)
+    return this.canonicalURL(html).includes("event")
   }
 
   static isLiveEvent(html) {
@@ -12,6 +27,10 @@ export default class Utils {
 
   static elementExists(selector, html) {
     return !!this.documentOrElement(html).querySelector(selector)
+  }
+
+  static eventID(html) {
+    return this.canonicalURL(html).split("/").pop();
   }
 
   static documentOrElement(html) {
@@ -43,5 +62,12 @@ export default class Utils {
     mountSource.insertBefore(element, mountSource.firstChild);
 
     return element;
+  }
+
+  static injectCSS(css) {
+    let element = document.createElement("style");
+    element.innerHTML = css;
+
+    document.head.insertBefore(element, document.head.firstChild);
   }
 }

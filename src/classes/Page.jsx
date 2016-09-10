@@ -16,7 +16,10 @@ export default class Page {
 
   get isEvent() { return Utils.isEvent(this.html) }
   get isLiveEvent() { return Utils.isLiveEvent(this.html) }
-  get isParsed() { return !this.html; }
+  get eventID() { return Utils.eventID(this.html) }
+  get canonicalURL() { return Utils.canonicalURL(this.html) }
+  get isParsed() { return !!this.html }
+  get title() { return this.dom.querySelector("title").innerHTML }
 
   find(...args) {
     return this.dom.querySelectorAll(args)
@@ -26,16 +29,7 @@ export default class Page {
     return this.dom.querySelector(args)
   }
 
-  insertBefore(component, selector) {
+  prepend(component, selector) {
     return Utils.insertComponentBefore(component, selector, this.dom)
-  }
-
-  // Event page methods
-
-  get eventID() {
-    // TODO: Make this work this parsed pages
-    if (this.isEvent && !this.isParsed) {
-      return this.dom.location.href.split("/").pop();
-    }
   }
 }
