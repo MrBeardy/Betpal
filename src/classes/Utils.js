@@ -50,7 +50,7 @@ export default class Utils {
   static renderComponent(component, wrapperElement = "div") {
     let element = document.createElement(wrapperElement);
 
-    render(React.createElement(component), element);
+    render(component, element);
 
     return element;
   }

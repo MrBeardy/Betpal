@@ -41,11 +41,17 @@ export default class FollowEventList extends React.Component {
     })
   }
 
+  // TODO: This duplicates some code in FollowEventButton, see inject.jsx
+  //       for a TODO on fixing this.
+  unfollow(id) {
+    chrome.storage.sync.remove(id, () => {});
+  }
+
   render() {
     let itemElements = _.map(this.state.items, (item) => {
       return (
         <li key={ item.id } >
-          <a href={ item.url }>{ item.title }</a>
+          <button onClick={ () => { this.unfollow(item.id) } }>[unfollow]</button> <a href={ item.url }>{ item.title }</a>
         </li>
       )
     })

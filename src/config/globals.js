@@ -1,5 +1,5 @@
 module.exports = {
-  storagePrefixes: {
-    followEvent: 'bp-follow-event-'
+  storage: {
+    followEvent: 'bp-follow-event'
   }
 }

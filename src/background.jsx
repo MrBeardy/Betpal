@@ -1,11 +1,14 @@
 
+import React from 'react'
+import { render } from 'react-dom'
+import Utils from './classes/Utils.js'
 import Page from './classes/Page.jsx'
+import { createStore } from 'redux'
 
-// let p = new Page( $.parseHTML( $("body").html() ) );
-// let html = document.documentElement.outerHTML;
+import FollowEventButton from './components/FollowEvent/FollowEventButton.jsx';
+import FollowEventList from './components/FollowEvent/FollowEventList.jsx';
 
-let html = "<body><h1>Hello World</h1>"
+import rFollowEvent from './reducers/rFollowEvent';
+let sFollowEvent = createStore(rFollowEvent);
 
-console.log(
-  new Page(html).dom.querySelectorAll("h1")[0].innerHTML
-)
+render(<FollowEventButton store={ sFollowEvent } />, document.getElementById('app_container'));
